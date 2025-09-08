@@ -1,0 +1,12 @@
+・コマンド
+docker-compose run --rm app composer create-project laravel/laravel .
+docker-compose run --rm node npx create-react-app . --template typescript
+docker exec -it moviereview-postgres php artisan key:generate
+docker exec -it moviereview-postgres php artisan migrate:refresh --seed
+
+＠laravel環境構築
+＠React環境構築
+＠posgre環境構築
+・gitリポジトリ連携
+・マイグレーション
+・シーダー
