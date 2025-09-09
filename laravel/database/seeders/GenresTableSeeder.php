@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class CategoriesTableSeeder extends Seeder
+class GenresTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,14 @@ class CategoriesTableSeeder extends Seeder
     public function run(): void
     {
         $now = Carbon::now();
-        $categoryNames = ['アクション', 'コメディ', 'ドラマ', 'ホラー', 'アニメ'];
+        $genreNames = ['アクション', 'コメディ', 'ドラマ', 'ホラー', 'アニメ'];
 
-        DB::table('categories')->insert(
+        DB::table('genres')->insert(
             array_map(fn($name) => [
-                'category_name' => $name,
+                'genre_name' => $name,
                 'created_at' => $now,
                 'updated_at' => $now,
-            ], $categoryNames)
+            ], $genreNames)
         );
     }
 }

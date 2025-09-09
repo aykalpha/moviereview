@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignId('movie_id')->constrained('movies')->cascadeOnDelete()->comment('映画ID');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->comment('ユーザーID');
             $table->unsignedTinyInteger('evaluation')->comment('評価');
-            $table->text('comment')->nullable()->comment('コメント');
+            $table->string('comment', 1000)->nullable()->comment('コメント');
             $table->timestamps();
         });
         DB::statement('ALTER TABLE reviews ADD CONSTRAINT evaluation_check CHECK (evaluation BETWEEN 1 AND 5)');

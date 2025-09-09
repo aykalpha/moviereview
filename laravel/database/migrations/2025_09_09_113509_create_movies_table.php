@@ -13,9 +13,9 @@ return new class extends Migration
             $table->id()->comment('映画ID');
             $table->string('title')->comment('タイトル');
             $table->string('image_path')->comment('画像パス');
-            $table->text('description')->comment('説明');
-            $table->date('release_date')->comment('公開日');
-            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->comment('カテゴリID');
+            $table->string('description', 1000)->comment('説明');
+            $table->integer('release_year')->comment('公開年');
+            $table->foreignId('genre_id')->constrained('genres')->cascadeOnDelete()->comment('ジャンルID');
             $table->timestamps();
         });
         DB::statement("COMMENT ON TABLE movies IS '映画テーブル'");

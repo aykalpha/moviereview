@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreMovieRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return false;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'title' => 'required|string|max:255',
+            'image_path' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'release_year' => 'required|integer|min:1900|max:2050',
+            'genre_id' => 'required|exists:genres,id',
+        ];
+    }
+}

@@ -12,12 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id()->comment('カテゴリID');
-            $table->string('category_name')->comment('カテゴリ名');
+        Schema::create('genres', function (Blueprint $table) {
+            $table->id()->comment('ジャンルID');
+            $table->string('genre_name')->comment('ジャンル名');
             $table->timestamps();
         });
-        DB::statement("COMMENT ON TABLE categories IS 'カテゴリマスタ'");
+
+        DB::statement("COMMENT ON TABLE genres IS 'ジャンルマスタ'");
     }
 
     /**
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('genres');
     }
 };
