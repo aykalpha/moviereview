@@ -36,13 +36,13 @@ class MovieController extends Controller
 
     public function update(UpdateMovieRequest $request, int $id)
     {
-        $movie = Movie::findOrFail($id)->update($request);
+        $movie = Movie::findOrFail($id)->update($request->validated());
         return response()->json($movie, 200);
     }
 
     public function store(StoreMovieRequest $request)
     {
-        $movie = Movie::create($request);
+        $movie = Movie::create($request->validated());
         return response()->json($movie, 201);
     }
 }
