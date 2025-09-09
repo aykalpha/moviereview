@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(MovieController::class)->group(function () {
@@ -9,3 +10,5 @@ Route::controller(MovieController::class)->group(function () {
     Route::put('/movies/{id}', 'update');
     Route::post('/movies', 'store');
 });
+
+Route::get('/genres/index', [GenreController::class, 'index']);
