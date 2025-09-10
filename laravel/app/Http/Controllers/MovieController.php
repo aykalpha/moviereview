@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SearchMovieRequest;
-use App\Http\Requests\StoreMovieRequest;
-use App\Http\Requests\UpdateMovieRequest;
+use App\Http\Requests\Movie\SearchMovieRequest;
+use App\Http\Requests\Movie\StoreMovieRequest;
+use App\Http\Requests\Movie\UpdateMovieRequest;
 use App\Models\Movie;
 
 class MovieController extends Controller
 {
     public function search(SearchMovieRequest $request)
     {
-        $query = Movie::query();
+        $query = Movie::with('genre')
+            ->withCount('reviews')
+            ->withAvg('reviews', 'evaluation');
 
         if ($request->title) {
             $query->where('title', 'like', "%{$request->title}%");
         }
 
         if ($request->release_year) {
-            $query->whereYear('release_date', $request->release_year);
+            $query->where('release_year', $request->release_year);
         }
 
         if ($request->genre_id) {
@@ -30,7 +32,10 @@ class MovieController extends Controller
 
     public function show(int $id)
     {
-        $movie = Movie::findOrFail($id);
+        $movie = Movie::with('genre')
+            ->withCount('reviews')
+            ->withAvg('reviews', 'evaluation')
+            ->findOrFail($id);
         return response()->json($movie, 200);
     }
 
