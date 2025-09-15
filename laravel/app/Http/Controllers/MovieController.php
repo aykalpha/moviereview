@@ -41,13 +41,37 @@ class MovieController extends Controller
 
     public function update(UpdateMovieRequest $request, int $id)
     {
-        $movie = Movie::findOrFail($id)->update($request->validated());
+        $data = $request->validated();
+        $movie = Movie::findOrFail($id);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('movies', $filename, 'public');
+            // @TODO:定数に変更
+            $data['image_path'] = 'movies/' . $filename;
+        }
+        $movie->update($data);
         return response()->json($movie, 200);
     }
 
     public function store(StoreMovieRequest $request)
     {
-        $movie = Movie::create($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('movies', $filename, 'public');
+            // @TODO:定数に変更
+            $data['image_path'] = 'storage/movies/' . $filename;
+        }
+        $movie = Movie::create($data);
         return response()->json($movie, 201);
+    }
+
+    public function delete(int $id)
+    {
+        $movie = Movie::findOrFail($id)->delete();
+        return response()->json($movie, 200);
     }
 }

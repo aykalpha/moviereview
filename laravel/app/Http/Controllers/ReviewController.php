@@ -32,4 +32,10 @@ class ReviewController extends Controller
         $review = Review::create($request->validated());
         return response()->json($review, 201);
     }
+
+    public function delete(int $id)
+    {
+        $movie = Review::findOrFail($id)->delete();
+        return response()->json($movie, 200);
+    }
 }
