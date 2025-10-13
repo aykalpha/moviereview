@@ -15,4 +15,8 @@ class Review extends Model
             $builder->orderByDesc('created_at');
         });
     }
+    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "./constants/api";
-import type { Genre } from "./constants/type";
+import { API_URL } from "../constants/api";
+import type { Genre } from "../constants/type";
 
 function MoviesCreate() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function MoviesCreate() {
   // 初期処理
   useEffect(() => {
     axios
-      .get(`${API_URL}/genres/index`)
+      .get(`${API_URL}/genres`)
       .then((response) => 
         setGenres(response.data))
       .catch(console.error);

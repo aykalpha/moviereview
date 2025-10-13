@@ -11,7 +11,7 @@ Route::controller(MovieController::class)->group(function () {
     Route::post('/movies', 'store');
 });
 
-Route::get('/genres/index', [GenreController::class, 'index']);
+Route::get('/genres', [GenreController::class, 'index']);
 
 Route::controller(ReviewController::class)->group(function () {
     Route::get('/reviews/search', 'search');

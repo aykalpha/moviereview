@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Review } from "./constants/type";
-import { API_URL } from "./constants/api";
+import { Review } from "../constants/type";
+import { API_URL } from "../constants/api";
 
 function ReviewsList() {
   const { id } = useParams<{ id: string }>();
@@ -11,9 +11,11 @@ function ReviewsList() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/movies/${id}`)
+      .get(`${API_URL}/reviews/search`, {
+        params: { movie_id: id },
+      })
       .then((response) => {
-        setReviews(response.data.reviews);
+        setReviews(response.data);
       })
       .catch(console.error);
   }, [id]);

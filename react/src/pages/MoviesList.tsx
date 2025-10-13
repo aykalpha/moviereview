@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL, API_URL } from "./constants/api";
-import { Movie } from "./constants/type";
+import { BASE_URL, API_URL } from "../constants/api";
+import { Movie } from "../constants/type";
 
 // 映画一覧
 function MoviesList() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [movies, setMovies] = useState<Movie[]>([]);
+
+  // 【課題】初期検索が自動実行されるように修正してみよう
 
   // 検索
   const onSearch = (e: React.FormEvent) => {

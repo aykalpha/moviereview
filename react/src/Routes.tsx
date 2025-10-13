@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MoviesList from "./MoviesList";
-import MoviesCreate from "./MoviesCreate";
-import ReviewsList from "./ReviewsList";
-import ReviewCreate from "./ReviewsCreate";
+import MoviesList from "./pages/MoviesList";
+import MoviesCreate from "./pages/MoviesCreate";
+import ReviewsList from "./pages/ReviewsList";
+import ReviewCreate from "./pages/ReviewsCreate";
 
 function Root() {
     return (

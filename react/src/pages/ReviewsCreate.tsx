@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "./constants/api";
-import type { User } from "./constants/type";
+import { API_URL } from "../constants/api";
+import type { User } from "../constants/type";
 
 function ReviewsCreate() {
   const { id } = useParams<{ id: string }>();
@@ -10,7 +10,7 @@ function ReviewsCreate() {
   const [users, setUsers] = useState<User[]>([]);
   const [review, setReview] = useState({
     user_id: "",
-    evaluation: 0,
+    evaluation: "",
     comment: "",
   });
 
@@ -30,6 +30,7 @@ function ReviewsCreate() {
     if (!review.user_id) { alert("ユーザーは必須です"); return; }
     if (!review.evaluation) { alert("評価は必須です"); return; }
 
+    // 【課題】URLをすべて定数ファイルにまとめてみよう
     axios
       .post(`${API_URL}/reviews`, {
         movie_id: id,
@@ -65,13 +66,13 @@ function ReviewsCreate() {
         <select
           value={review.evaluation}
           onChange={(e) =>
-            setReview({ ...review, evaluation: Number(e.target.value) })
+            setReview({ ...review, evaluation: e.target.value })
           }
         >
           <option value="">選択してください</option>
-          {[1, 2, 3, 4, 5].map((number) => (
-            <option key={number} value={number}>
-              {number}
+          {["1", "2", "3", "4", "5"].map((evaluation) => (
+            <option key={evaluation} value={evaluation}>
+              {evaluation}
             </option>
           ))}
         </select>

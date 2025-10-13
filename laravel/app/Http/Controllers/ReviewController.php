@@ -12,7 +12,7 @@ class ReviewController extends Controller
     // レビュー検索
     public function search(SearchReviewRequest $request)
     {
-        $query = Review::query();
+        $query = Review::with('user');
         if ($request->has('movie_id')) {
             $query->where('movie_id', $request->movie_id);
         }

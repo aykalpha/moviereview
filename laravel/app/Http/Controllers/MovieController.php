@@ -25,9 +25,11 @@ class MovieController extends Controller
     {
         $data = $request->validated();
         if ($request->hasFile('image')) {
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $path = $image->storeAs(config('constants.paths.movie_image'), $filename, 'public');
-            $data['image_path'] = $path;
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs(config('constants.paths.movie_image'), $filename, 'public');
+            $data['image_path'] = config('constants.paths.movie_image_path') . $filename;
+            unset($data['image']);
         }
         $movie = Movie::create($data);
         return response()->json($movie, 201);
