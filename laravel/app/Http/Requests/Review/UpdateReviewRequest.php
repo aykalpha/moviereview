@@ -16,8 +16,7 @@ class UpdateReviewRequest extends FormRequest
         return [
             'movie_id' => 'sometimes|exists:movies,id',
             'user_id' => 'sometimes|exists:users,id',
-            // @TODO:Enum定義
-            'evaluation' => 'sometimes|integer|min:1|max:5',
+            'evaluation' => ['sometimes', Rule::enum(Evaluation::class)],
             'comment' => 'sometimes|string|max:1000',
         ];
     }

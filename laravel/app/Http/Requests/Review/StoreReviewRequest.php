@@ -16,8 +16,7 @@ class StoreReviewRequest extends FormRequest
         return [
             'movie_id' => 'required|exists:movies,id',
             'user_id' => 'required|exists:users,id',
-            // @TODO:Enum定義
-            'evaluation' => 'required|integer|min:1|max:5',
+            'evaluation' => ['required', Rule::enum(Evaluation::class)],
             'comment' => 'nullable|string|max:1000',
         ];
     }
