@@ -36,6 +36,7 @@ class MovieController extends Controller
             ->withCount('reviews')
             ->withAvg('reviews', 'evaluation')
             ->findOrFail($id);
+
         return response()->json($movie, 200);
     }
 
@@ -43,14 +44,16 @@ class MovieController extends Controller
     {
         $data = $request->validated();
         $movie = Movie::findOrFail($id);
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('movies', $filename, 'public');
-            // @TODO:定数に変更
-            $data['image_path'] = 'movies/' . $filename;
+            $file->storeAs(config('constants.paths.movie_image'), $filename, 'public');
+            $data['image_path'] = config('constants.paths.movie_image') . $filename;
         }
+
         $movie->update($data);
+
         return response()->json($movie, 200);
     }
 
@@ -61,11 +64,12 @@ class MovieController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('movies', $filename, 'public');
-            // @TODO:定数に変更
-            $data['image_path'] = 'storage/movies/' . $filename;
+            $file->storeAs(config('constants.paths.movie_image'), $filename, 'public');
+            $data['image_path'] = config('constants.paths.movie_image') . $filename;
         }
+
         $movie = Movie::create($data);
+
         return response()->json($movie, 201);
     }
 
