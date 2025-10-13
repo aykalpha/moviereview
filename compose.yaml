@@ -2,7 +2,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile.laravel
+      dockerfile: Dockerfile
     container_name: moviereview-laravel
     ports:
       - "8000:8000"
