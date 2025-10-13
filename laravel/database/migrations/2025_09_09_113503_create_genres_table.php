@@ -14,10 +14,9 @@ return new class extends Migration
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->id()->comment('ジャンルID');
-            $table->string('genre_name')->comment('ジャンル名');
+            $table->string('name')->comment('ジャンル名');
             $table->timestamps();
         });
-
         DB::statement("COMMENT ON TABLE genres IS 'ジャンルマスタ'");
     }
 

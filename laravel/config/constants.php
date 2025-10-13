@@ -2,6 +2,6 @@
 
 return [
     'paths' => [
-        'movie_image' => 'movies/',
+        'movie_image' => 'storage/movies/',
     ],
 ];

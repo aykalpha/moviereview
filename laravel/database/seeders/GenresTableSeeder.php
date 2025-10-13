@@ -18,7 +18,7 @@ class GenresTableSeeder extends Seeder
 
         DB::table('genres')->insert(
             array_map(fn($name) => [
-                'genre_name' => $name,
+                'name' => $name,
                 'created_at' => $now,
                 'updated_at' => $now,
             ], $genreNames)

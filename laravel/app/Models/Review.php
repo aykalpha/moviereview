@@ -3,15 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Review extends Model
 {
-    protected $fillable = [
-        'movie_id',
-        'user_id',
-        'evaluation',
-        'comment',
-    ];
+    protected $guarded = [];
     
     protected static function booted()
     {

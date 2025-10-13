@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Movie;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreMovieRequest extends FormRequest
 {
@@ -10,7 +11,7 @@ class StoreMovieRequest extends FormRequest
     {
         return true;
     }
-
+    
     public function rules(): array
     {
         return [
@@ -18,7 +19,7 @@ class StoreMovieRequest extends FormRequest
             'image' => 'required|image|max:2048',
             'description' => 'required|string|max:1000',
             'release_year' => 'required|integer|min:1900|max:2050',
-            'genre_id' => 'required|exists:genres,id',
+            'genre_id' => ['required', Rule::exists('genres', 'id')]
         ];
     }
 }

@@ -7,13 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Movie extends Model
 {
-    protected $fillable = [
-        'title',
-        'release_year',
-        'genre_id',
-        'description',
-        'image_path',
-    ];
+    protected $guarded = [];
 
     protected static function booted()
     {

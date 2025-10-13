@@ -9,6 +9,6 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::select('id', 'name')->get();
+        return User::all();
     }
 }

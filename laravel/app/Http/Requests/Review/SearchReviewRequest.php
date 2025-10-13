@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Review;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SearchReviewRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class SearchReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'movie_id' => 'required|exists:movies,id',
+            'movie_id' => ['required', Rule::exists('movies', 'id')]
         ];
     }
 }
