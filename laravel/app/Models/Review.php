@@ -12,4 +12,11 @@ class Review extends Model
         'evaluation',
         'comment',
     ];
+    
+    protected static function booted()
+    {
+        static::addGlobalScope('createdAtDesc', function (Builder $builder) {
+            $builder->orderByDesc('created_at');
+        });
+    }
 }

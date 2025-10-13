@@ -23,8 +23,8 @@ services:
     container_name: moviereview-postgres
     restart: always
     environment:
+      POSTGRES_DB: moviereview
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: moviereview
     ports:
       - "5435:5432"
