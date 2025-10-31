@@ -9,6 +9,7 @@ services:
     volumes:
       - ./laravel:/var/www/html
     command: sh -c "composer install && php artisan serve --host=0.0.0.0 --port=8000"
+    restart: "no"
   node:
     image: node:24
     container_name: moviereview-react
